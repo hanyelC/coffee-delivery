@@ -8,6 +8,8 @@ export const HeaderContainer = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 112rem;
+    margin: 0 auto;
 
     & > nav {
       display: flex;

@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const HeaderContainer = styled.header`
-  background-color: ${({ theme }) => theme.colors.base.background};
   width: 100%;
   padding: 3.2rem 0;
 
@@ -9,8 +8,6 @@ export const HeaderContainer = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 112rem;
-    margin: 0 auto;
 
     & > nav {
       display: flex;

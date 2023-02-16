@@ -5,7 +5,7 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-size: 62.5%;
   }
-  
+
   *, *:before, *:after {
     box-sizing: inherit;
     -webkit-font-smoothing: antialiased;

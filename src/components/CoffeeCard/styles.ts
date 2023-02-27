@@ -86,37 +86,6 @@ export const Price = styled.div`
   }
 `
 
-export const Counter = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-
-  background-color: ${({ theme }) => theme.colors.base.button};
-
-  padding: 8px;
-  border-radius: 6px;
-
-  & > button {
-    cursor: pointer;
-    border: 0;
-    background: none;
-
-    & > svg line {
-      stroke: ${({ theme }) => theme.colors.brand.secondary};
-    }
-  }
-
-  & > div {
-    font-size: 1.6rem;
-    font-weight: 400;
-    line-height: 1.3;
-    text-align: center;
-    font-family: ${({ theme }) => theme.fonts.text};
-    color: ${({ theme }) => theme.colors.base.title};
-  }
-`
-
 export const CartButton = styled.button`
   width: 3.8rem;
   height: 3.8rem;

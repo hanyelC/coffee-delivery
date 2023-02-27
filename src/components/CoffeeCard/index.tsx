@@ -1,12 +1,12 @@
-import { Minus, Plus, ShoppingCart } from 'phosphor-react'
+import { ShoppingCart } from 'phosphor-react'
 import expresso from '../../assets/Expresso.png'
+import { Counter } from '../Counter'
 import {
   Buy,
   BuyActions,
   CartButton,
   CoffeeCardContainer,
   Price,
-  Counter,
   Tag,
 } from './styles'
 
@@ -28,15 +28,7 @@ export function CoffeeCard() {
           R$ <strong>9,90</strong>
         </Price>
         <BuyActions>
-          <Counter>
-            <button>
-              <Minus weight="bold" size={14} />
-            </button>
-            <div>1</div>
-            <button>
-              <Plus weight="bold" size={14} />
-            </button>
-          </Counter>
+          <Counter />
           <CartButton>
             <ShoppingCart size={22} weight="fill" />
           </CartButton>

@@ -64,7 +64,6 @@ export const PaymentOption = styled.label<PaymentOptionProps>`
   &:hover {
     cursor: pointer;
     background-color: ${({ theme }) => theme.colors.base.hover};
-    border-color: ${({ theme }) => theme.colors.base.hover};
   }
 
   & > input {

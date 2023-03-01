@@ -1,15 +1,11 @@
+import { useCartContext } from '../../../../contexts/CartContext'
 import { formatMoney } from '../../../../utils/formatMoney'
 import { OrderSummaryContainer } from './styles'
 
-interface OrderSummaryProps {
-  shipping: number
-  subtotal: number
-}
+export function OrderSummary() {
+  const { shippingFee, subtotal, total } = useCartContext()
 
-export function OrderSummary({ shipping, subtotal }: OrderSummaryProps) {
-  const total = shipping + subtotal
-
-  const formattedShipping = formatMoney(shipping).formattedValueWithSymbol
+  const formattedShipping = formatMoney(shippingFee).formattedValueWithSymbol
   const formattedSubtotal = formatMoney(subtotal).formattedValueWithSymbol
   const formattedTotal = formatMoney(total).formattedValueWithSymbol
 

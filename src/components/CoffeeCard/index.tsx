@@ -1,4 +1,7 @@
 import { ShoppingCart } from 'phosphor-react'
+import { useState } from 'react'
+import { useCartContext } from '../../contexts/CartContext'
+import { Coffee } from '../../reducers/cart/reducer'
 import { formatMoney } from '../../utils/formatMoney'
 import { Counter } from '../Counter'
 import {
@@ -12,19 +15,34 @@ import {
 } from './styles'
 
 interface CoffeeCardProps {
-  coffee: {
-    description: string
-    id: string
-    imageUrl: string
-    name: string
-    price: number
-    qty: number
-    tags: string[]
-  }
+  coffee: Coffee
 }
 
 export function CoffeeCard({ coffee }: CoffeeCardProps) {
+  const [counter, setCounter] = useState<number>(1)
+  const { dispatch } = useCartContext()
+
   const { currencySymbol, formattedValue } = formatMoney(coffee.price)
+
+  const decreaseCounter = () => {
+    setCounter((state) => (state > 1 ? state - 1 : state))
+  }
+
+  const increaseCounter = () => {
+    setCounter((state) => (state < 99 ? state + 1 : state))
+  }
+
+  const handleAddToCart = () => {
+    dispatch({
+      type: 'ADD_ITEM',
+      payload: {
+        ...coffee,
+        qty: counter,
+      },
+    })
+
+    setCounter(1)
+  }
 
   return (
     <CoffeeCardContainer>
@@ -45,8 +63,12 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
           {currencySymbol} <strong>{formattedValue}</strong>
         </Price>
         <BuyActions>
-          <Counter />
-          <CartButton>
+          <Counter
+            qty={counter}
+            handleDecrease={decreaseCounter}
+            handleIncrease={increaseCounter}
+          />
+          <CartButton onClick={handleAddToCart}>
             <ShoppingCart size={22} weight="fill" />
           </CartButton>
         </BuyActions>

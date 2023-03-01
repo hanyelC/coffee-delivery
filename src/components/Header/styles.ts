@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const HeaderContainer = styled.header`
   width: 100%;
@@ -19,10 +19,45 @@ export const HeaderContainer = styled.header`
   }
 `
 
-export const Checkout = styled.div`
+interface CheckoutProps {
+  totalOfItems?: number
+}
+
+export const Checkout = styled.div<CheckoutProps>`
   background-color: ${({ theme }) => theme.colors.brand['primary-light']};
   padding: 0.8rem;
   border-radius: 6px;
+  position: relative;
+
+  ${({ totalOfItems }) => {
+    return totalOfItems
+      ? css`
+          &::after {
+            position: absolute;
+            content: '${totalOfItems}';
+            height: 20px;
+            width: 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 100px;
+
+            top: -0.8rem;
+            right: -0.8rem;
+
+            background-color: ${({ theme }) =>
+              theme.colors.brand['primary-dark']};
+            color: ${({ theme }) => theme.colors.base.white};
+            font-family: ${({ theme }) => theme.fonts.text};
+            font-weight: 700;
+            font-size: 1.2rem;
+            line-height: 1;
+          }
+        `
+      : ''
+  }}
 
   & > svg {
     fill: ${({ theme }) => theme.colors.brand['primary-dark']};

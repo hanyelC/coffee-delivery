@@ -1,5 +1,4 @@
 import { Minus, Plus, Trash } from 'phosphor-react'
-import expresso from '../../../../assets/Expresso.png'
 import { formatMoney } from '../../../../utils/formatMoney'
 import {
   Actions,
@@ -12,29 +11,44 @@ import {
 } from './styles'
 
 interface CartItemProps {
+  coffee: {
+    imageUrl: string
+    name: string
+  }
+  qty: number
   price: number
+  handleAddOneQty: () => void
+  handleRemoveFromCart: () => void
+  handleRemoveOneQty: () => void
 }
 
-export function CartItem({ price }: CartItemProps) {
+export function CartItem({
+  coffee,
+  qty,
+  price,
+  handleAddOneQty,
+  handleRemoveFromCart,
+  handleRemoveOneQty,
+}: CartItemProps) {
   const formattedPrice = formatMoney(price).formattedValueWithSymbol
 
   return (
     <CartItemContainer>
       <Info>
-        <img src={expresso} alt="" />
+        <img src={coffee.imageUrl} alt="" />
         <Details>
-          <span>Expresso Tradicional</span>
+          <span>{coffee.name}</span>
           <Actions>
             <Counter>
-              <button type="button">
+              <button type="button" onClick={handleRemoveOneQty}>
                 <Minus weight="bold" size={14} />
               </button>
-              <div>1</div>
-              <button type="button">
+              <div>{qty}</div>
+              <button type="button" onClick={handleAddOneQty}>
                 <Plus weight="bold" size={14} />
               </button>
             </Counter>
-            <RemoveButton type="button">
+            <RemoveButton type="button" onClick={handleRemoveFromCart}>
               <Trash size={16} weight="regular" />
               REMOVER
             </RemoveButton>

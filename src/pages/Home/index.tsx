@@ -1,5 +1,6 @@
 import { CoffeeCard } from '../../components/CoffeeCard'
 import { Hero } from '../../components/Hero'
+import { coffees } from '../../utils/coffeeList'
 import {
   CoffeeList,
   CoffeeListHeader,
@@ -24,11 +25,9 @@ export function Home() {
           </Filters>
         </CoffeeListHeader>
         <CoffeeList>
-          {Array(5)
-            .fill('0')
-            .map((_, i) => (
-              <CoffeeCard key={i} />
-            ))}
+          {coffees.map((coffee) => (
+            <CoffeeCard key={coffee.id} coffee={coffee} />
+          ))}
         </CoffeeList>
       </main>
     </HomeContainer>

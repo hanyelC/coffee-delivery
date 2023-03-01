@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import { useCartContext } from '../../contexts/CartContext'
 import { AddressForm } from './components/AddressForm'
 import { Cart } from './components/Cart'
 import { PaymentForm } from './components/PaymentForm'
@@ -7,7 +8,11 @@ import { CheckoutContainer, FormsWrapper } from './styles'
 export function Checkout() {
   const navigate = useNavigate()
 
+  const { dispatch } = useCartContext()
+
   const confirmOrder = () => {
+    dispatch({ type: 'CLEAR_CART' })
+
     navigate('/success')
   }
 

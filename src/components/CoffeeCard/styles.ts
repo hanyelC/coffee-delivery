@@ -41,6 +41,11 @@ export const CoffeeCardContainer = styled.div`
   }
 `
 
+export const Tags = styled.div`
+  display: flex;
+  gap: 0.4rem;
+`
+
 export const Tag = styled.div`
   background-color: ${({ theme }) => theme.colors.brand['primary-light']};
 

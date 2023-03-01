@@ -1,5 +1,5 @@
 import { ShoppingCart } from 'phosphor-react'
-import expresso from '../../assets/Expresso.png'
+import { formatMoney } from '../../utils/formatMoney'
 import { Counter } from '../Counter'
 import {
   Buy,
@@ -8,24 +8,41 @@ import {
   CoffeeCardContainer,
   Price,
   Tag,
+  Tags,
 } from './styles'
 
-export function CoffeeCard() {
+interface CoffeeCardProps {
+  coffee: {
+    description: string
+    id: string
+    imageUrl: string
+    name: string
+    price: number
+    qty: number
+    tags: string[]
+  }
+}
+
+export function CoffeeCard({ coffee }: CoffeeCardProps) {
+  const { currencySymbol, formattedValue } = formatMoney(coffee.price)
+
   return (
     <CoffeeCardContainer>
       <div>
-        <img src={expresso} alt="" />
+        <img src={coffee.imageUrl} alt="" />
       </div>
-      <div>
-        <Tag>Tradicional</Tag>
-      </div>
+      <Tags>
+        {coffee.tags.map((tag) => (
+          <Tag key={tag}>{tag}</Tag>
+        ))}
+      </Tags>
 
-      <h3>Expresso Tradicional</h3>
-      <p>O tradicional café feito com água quente e grãos moídos</p>
+      <h3>{coffee.name}</h3>
+      <p>{coffee.description}</p>
 
       <Buy>
         <Price>
-          R$ <strong>9,90</strong>
+          {currencySymbol} <strong>{formattedValue}</strong>
         </Price>
         <BuyActions>
           <Counter />
